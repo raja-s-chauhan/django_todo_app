@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ employee.first_name }} {{ employee.last_name }} - Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            margin: 0;
+            padding: 40px;
+            color: #333;
+        }
+        .employee-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+        .employee-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #007BFF;
+            margin-bottom: 15px;
+        }
+        .employee-card h2 {
+            margin-bottom: 5px;
+            color: #007BFF;
+        }
+        .employee-card p {
+            margin: 8px 0;
+            font-size: 16px;
+        }
+        .timestamp {
+            font-size: 12px;
+            color: #777;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="employee-card">
+        {% if employee.photo %}
+            <img src="{{ employee.photo.url }}" alt="{{ employee.first_name }} {{ employee.last_name }}">
+        {% else %}
+            <img src="https://via.placeholder.com/150" alt="No Photo">
+        {% endif %}
+        
+        <h2>{{ employee.first_name }} {{ employee.last_name }}</h2>
+        <p><strong>Designation:</strong> {{ employee.designation }}</p>
+        <p><strong>Email:</strong> {{ employee.email }}</p>
+        <p><strong>Phone:</strong> {{ employee.phone_number }}</p>
+
+        <div class="timestamp">
+            <p>Created: {{ employee.created_at|date:"M d, Y H:i" }}</p>
+            <p>Updated: {{ employee.updated_at|date:"M d, Y H:i" }}</p>
+        </div>
+    </div>
+
+</body>
+</html>
